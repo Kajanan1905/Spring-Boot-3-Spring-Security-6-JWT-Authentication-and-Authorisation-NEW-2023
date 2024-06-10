@@ -2,6 +2,7 @@ package com.kajanan.config;
 
 import java.io.IOException;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -35,6 +36,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		jwt = authHeader.substring(7);
 		userName = jwtservice.extractUsername(jwt);
+
+		if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			
+		}
 
 	}
 
