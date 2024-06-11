@@ -3,6 +3,8 @@ package com.kajanan.config;
 import java.io.IOException;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -19,7 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	private JwtService jwtservice;
+	private final JwtService jwtservice = new JwtService();
+	private final UserDetailsService userDetailsService = null;
 
 	@Override
 	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
@@ -38,7 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		userName = jwtservice.extractUsername(jwt);
 
 		if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			
+			UserDetails userDetails = this.userDetailsService.loadUserByUsername(userName);
 		}
 
 	}
