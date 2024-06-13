@@ -18,26 +18,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfiguration {
-	
-	private final JwtAuthenticationFilter jwtAuthFilter = new JwtAuthenticationFilter();
-    private final AuthenticationProvider authenticationProvider = null;
-    private final LogoutHandler logoutHandler = null;
+
+	private final JwtAuthenticationFilter jwtAuthFilter;
+	private final AuthenticationProvider authenticationProvider;
+	private final LogoutHandler logoutHandler;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf
-                .disable())
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
-                .sessionManagement(management -> management
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-		
+		http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(
+						requests -> requests.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated())
+				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authenticationProvider(authenticationProvider)
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
 		return http.build();
 	}
 

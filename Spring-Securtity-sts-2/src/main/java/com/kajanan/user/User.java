@@ -19,13 +19,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
+@Builder
 public class User implements UserDetails {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private Integer id;
