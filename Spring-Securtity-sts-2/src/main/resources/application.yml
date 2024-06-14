@@ -1,21 +1,21 @@
 spring:
   datasource:
-   url: jdbc:postgresql://localhost:5432/jwt_security_db
-   username: postgres
-   password: 1234
-   
+    url: jdbc:postgresql://localhost:5432/jwt_security_db
+    username: postgres
+    password: 1234
+
   jpa:
     hibernate:
       ddl-auto: create-drop
     show-sql: false
     properties:
       hibernate:
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+        database: postgresql
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-  application:
-     security:
-     jwt:
+application:
+  security:
+    jwt:
       secret-key: b644zKsc2L3u7306uKUpfiMfgzaFQvibJR/k+4EJgg+ZPVMmi+Y4G+eryQcRL2s0
       expiration: 86400000 # a day
       refresh-token:
