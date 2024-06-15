@@ -1,4 +1,4 @@
-package com.kajanan.user;
+package com.kajanan.controller;
 
 import java.util.Collection;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.kajanan.user.Role;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -19,11 +21,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
-@Builder
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;

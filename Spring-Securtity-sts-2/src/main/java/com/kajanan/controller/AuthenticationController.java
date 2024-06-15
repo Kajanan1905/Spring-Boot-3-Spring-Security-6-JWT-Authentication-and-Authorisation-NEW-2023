@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kajanan.auth.AuthenticationRequest;
-import com.kajanan.auth.AuthenticationResponse;
 import com.kajanan.auth.RegisterRequest;
-import com.kajanan.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
 

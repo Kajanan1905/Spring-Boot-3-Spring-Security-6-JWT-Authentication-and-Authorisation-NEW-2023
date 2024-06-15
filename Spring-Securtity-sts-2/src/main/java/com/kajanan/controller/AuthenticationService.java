@@ -1,4 +1,4 @@
-package com.kajanan.service;
+package com.kajanan.controller;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -6,10 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kajanan.auth.AuthenticationRequest;
-import com.kajanan.auth.AuthenticationResponse;
 import com.kajanan.auth.RegisterRequest;
-import com.kajanan.repository.UserRepository;
-import com.kajanan.user.User;
+import com.kajanan.user.Role;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,13 +21,11 @@ public class AuthenticationService {
 
 	public AuthenticationResponse register(RegisterRequest request) {
 		var user = User.builder().firstname(request.getFirstname()).lastname(request.getLastname())
-				.email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-				.role(request.getRole()).build();
+				.email(request.getEmail()).password(passwordEncoder.encode(request.getPassword())).role(Role.USER)
+				.build();
 		repository.save(user);
 		var jwtToken = jwtService.generateToken(user);
-		return AuthenticationResponse.builder().accessToken(jwtToken)
-
-				.build();
+		return AuthenticationResponse.builder().token(jwtToken).build();
 	}
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -37,7 +33,7 @@ public class AuthenticationService {
 				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 		var user = repository.findByEmail(request.getEmail()).orElseThrow();
 		var jwtToken = jwtService.generateToken(user);
-		return AuthenticationResponse.builder().accessToken(jwtToken)
+		return AuthenticationResponse.builder().token(jwtToken)
 
 				.build();
 	}

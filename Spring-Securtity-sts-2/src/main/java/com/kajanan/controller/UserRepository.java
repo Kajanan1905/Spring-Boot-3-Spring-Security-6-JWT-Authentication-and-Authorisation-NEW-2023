@@ -1,10 +1,8 @@
-package com.kajanan.repository;
+package com.kajanan.controller;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.kajanan.user.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
