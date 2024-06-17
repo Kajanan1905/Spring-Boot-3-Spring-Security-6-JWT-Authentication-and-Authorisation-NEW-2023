@@ -1,4 +1,4 @@
-package com.kajanan.auth;
+package com.kajanan.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

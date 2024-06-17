@@ -1,4 +1,4 @@
-package com.kajanan.config;
+package com.kajanan.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +11,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.kajanan.controller.UserRepository;
-
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-	private final UserRepository repository = null;
+	private final UserRepository repository;
 
 	@Bean
 	UserDetailsService userDetailsService() {

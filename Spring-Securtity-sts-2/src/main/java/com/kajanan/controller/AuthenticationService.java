@@ -5,10 +5,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.kajanan.auth.AuthenticationRequest;
-import com.kajanan.auth.RegisterRequest;
-import com.kajanan.user.Role;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
