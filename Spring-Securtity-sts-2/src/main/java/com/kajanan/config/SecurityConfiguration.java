@@ -22,11 +22,11 @@ public class SecurityConfiguration {
 	private final AuthenticationProvider authenticationProvider;
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(
-						requests -> requests.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated())
+				.authorizeHttpRequests(requests -> requests.requestMatchers("/api/v1/auth/**").permitAll().anyRequest()
+						.authenticated())
 				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
